@@ -37,7 +37,7 @@ int main()
         snprintf(CToP1,10,"%d",childToParent[1]);
         snprintf(BUFFER_SIZE_CHAR,10,"%d",BUFFER_SIZE);
 
-        execlp("./Server.out","./Server.out",PToC0,PToC1,CToP0,CToP1, BUFFER_SIZE_CHAR, NULL);  //UNCOMMENT OUT
+        execlp("./Server.out","./Server.out",PToC0,PToC1,CToP0,CToP1, BUFFER_SIZE_CHAR, NULL);
 
     }
     else    //In the parent process
