@@ -63,11 +63,14 @@ int main()
 
             if(strcmp(input, "exit") == 0)  //If client typed "exit" wait for server to exit.
             {
+                read(childToParent[0], output, BUFFER_SIZE);
+                printf("%s\n", output);
+
                 waitpid(-1, &status, 0);
                 if(WIFEXITED(status))
                 {
                     int exit_status = WEXITSTATUS(status);
-                    printf("Exit status of the child was %d", exit_status);
+                    printf("Exit status of the child was %d\n", exit_status);
                 }
                 return 0;
             }
@@ -81,7 +84,7 @@ int main()
                 {
                     if(WIFEXITED(status))
                     {
-                        printf("Child process exited status %d", WEXITSTATUS(status));
+                        printf("Child process exited status %d\n", WEXITSTATUS(status));
                         exit(5);    //Exit code 5 indicating child exited from error.
                     }
                 }

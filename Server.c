@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     char input[BUFFER_SIZE];    //Used to store input read from a pipe.
     char output[BUFFER_SIZE];   //Used to store output to read to a pipe.
 
-    //Send initalization completion signal to Interace
+    //Send initialization completion signal to Interface
     write(childToParent[1], output, BUFFER_SIZE);
 
     while(1)
@@ -87,7 +87,17 @@ int main(int argc, char *argv[])
         //User entered "exit"
         if(strcmp(input, "exit") == 0)
         {
+            int child_pid = getpid();
+            char temp[20];
+            snprintf(temp, sizeof(temp) - 1, "%d", child_pid);
+
+            strcpy(output, "Child process (");
+            strcat(output, temp);
+            strcat(output, ") completed.");
+
             free(vehiclePtr);   //Deallocate vehiclePtr from heap.
+            write(childToParent[1], output, BUFFER_SIZE);
+
             exit(0);
         }
 
