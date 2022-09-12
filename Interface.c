@@ -70,8 +70,12 @@ int main()
                 if(WIFEXITED(status))
                 {
                     int exit_status = WEXITSTATUS(status);
-                    printf("Exit status of the child was %d\n", exit_status);
+                    printf("Exit status of child process = %d\n", exit_status);
                 }
+
+                close(parentToChild[1]);
+                close(childToParent[0]);
+
                 return 0;
             }
 

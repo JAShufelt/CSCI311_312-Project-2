@@ -96,7 +96,10 @@ int main(int argc, char *argv[])
             strcat(output, ") completed.");
 
             free(vehiclePtr);   //Deallocate vehiclePtr from heap.
-            write(childToParent[1], output, BUFFER_SIZE);
+            close(parentToChild[0]);    //Close reading pipe
+
+            write(childToParent[1], output, BUFFER_SIZE);   //Write completion message.
+            close(childToParent[1]);    //Close writing pipe
 
             exit(0);
         }
