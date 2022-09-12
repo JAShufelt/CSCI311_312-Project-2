@@ -3,6 +3,12 @@
 int main(int argc, char *argv[])
 {
     /////////////////////////////////////////  Initialization  /////////////////////////////////////////////////////
+    if(argc != 6)
+    {
+        printf("This executable is not a standalone, Interface.out must be executed.");
+        exit(6);
+    }
+
 
     FILE *fptr;             //Used to read gasData
     vehicle *vehiclePtr;    //Array of vehicle structs
@@ -12,7 +18,7 @@ int main(int argc, char *argv[])
 
     fptr = fopen("gasData","r");    //Open gasData for reading, if gasData is not found exit code 2
     if (fptr == NULL)
-        exit(2);
+        exit(7);
 
     while(fgets(buffer, sizeof(buffer), fptr))  //Read gasData to completion and count the number of lines
         count++;
@@ -22,7 +28,7 @@ int main(int argc, char *argv[])
 
     fptr = fopen("gasData","r");
     if (fptr == NULL)
-        exit(2);
+        exit(8);
 
     for(int i = 0; i < count; i++)
         {
